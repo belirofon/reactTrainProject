@@ -1,3 +1,3 @@
-# React-ssr boilerplate
+# React train project
 
-## _Hello, it's working boilerplate for webpack, using hot-middleware and webpack-dev-middleware._
+## _Hello, it's my project, using hot-middleware and webpack-dev-middleware._
