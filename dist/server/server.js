@@ -85,10 +85,13 @@ var app = external_express_default()();
 app.use('/static', external_express_default()["static"]('./dist/client'));
 app.get('/', function (req, res) {
   res.send(indexTemplate(server_default().renderToString(App())));
-});
-app.get('/auth', function (req, res) {
-  res.send(indexTemplate(server_default().renderToString(App())));
-});
+}); // app.get('/auth', (req, res) => {
+//
+//     res.send(
+//         indexTemplate(ReactDOM.renderToString(App())),
+//     );
+// });
+
 app.listen(3000, function () {
   console.log('>>>>>>Server has been started on http://localhost:3000');
 });

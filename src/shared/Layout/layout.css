@@ -1,4 +1,6 @@
 .Layout {
-  min-width: 1400px;
+  max-width: 1400px;
+  min-height: 100vh;
   margin: 0 auto;
+  background-color: #e04646;
 }
