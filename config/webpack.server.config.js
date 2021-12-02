@@ -31,28 +31,29 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
                         plugins: ['@babel/plugin-proposal-object-rest-spread']
                     }
                 }
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [stylesHandler, "sass-loader", {
-                    loader: stylesHandler,
-                    options: {
-                        modules: {
-                            mode: 'local',
-                            localIdentName: '[name]__[local]--[hash:base64:5]',
-                        },
-                        onlyLocals: true,
-                    }
-                },
-            ],  exclude: GLOBAL_CSS_REGEXP
-              },
-              {
+                test: /\.css$/,
+                use: [
+                     {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
+                        }
+                    }, 'sass-loader'
+                ],
+                exclude: GLOBAL_CSS_REGEXP
+            },
+            {
                 test: GLOBAL_CSS_REGEXP,
-                use: [stylesHandler, 'sass-loader']
+                use: ['css-loader']
             },
               {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -64,7 +65,8 @@ module.exports = {
         minimize: false,
     },
     devtool: IS_DEV ? 'eval' : false,
-    plugins: [new DefinePlugin({
+    plugins:
+        [new DefinePlugin({
         'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`
     })]
 }

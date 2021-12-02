@@ -9,6 +9,7 @@ export const indexTemplate = (content) => `
     <title>React-ssr</title>
 </head>
 <body>
+    <noscript>You must enable JavaScript to use this application.</noscript>
     <div id="root">${content}</div>
 </body>
 </html>

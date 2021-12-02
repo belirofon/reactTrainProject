@@ -14,12 +14,12 @@ app.get('/', (req, res) => {
     );
 });
 
-app.get('/auth', (req, res) => {
-
-    res.send(
-        indexTemplate(ReactDOM.renderToString(App())),
-    );
-});
+// app.get('/auth', (req, res) => {
+//
+//     res.send(
+//         indexTemplate(ReactDOM.renderToString(App())),
+//     );
+// });
 
 app.listen(3000, () => {
     console.log('>>>>>>Server has been started on http://localhost:3000');

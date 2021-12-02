@@ -51,27 +51,29 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
                         plugins: ['@babel/plugin-proposal-object-rest-spread']
                     }
                 }
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [stylesHandler, "sass-loader", {
-                    loader: stylesHandler,
-                    options: {
-                        modules: {
-                            mode: 'local',
-                            localIdentName: '[name]__[local]--[hash:base64:5]',
-                        },
-                    }
-                },
-            ],  exclude: GLOBAL_CSS_REGEXP
-              },
+                test: /\.css$/,
+                use: [
+                    'style-loader', {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                mode: 'local',
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
+                        }
+                    }, 'sass-loader'
+                ],
+                exclude: GLOBAL_CSS_REGEXP
+            },
               {
                 test: GLOBAL_CSS_REGEXP,
-                use: [stylesHandler, 'sass-loader']
+                use: ['style-loader', 'css-loader']
             },
               {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -83,7 +85,7 @@ module.exports = {
     plugins: IS_DEV
     ? [
         new CleanWebpackPlugin(),
-    new HotModuleReplacementPlugin()
+        new HotModuleReplacementPlugin(),
 ] : [],
     // plugins: IS_DEV ? DEV_PLUGINS.concat(COMMON_PLUGINS) : COMMON_PLUGINS
 };
