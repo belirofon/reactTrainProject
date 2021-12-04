@@ -1,11 +1,9 @@
 import React from 'react';
-import styles from './button.css';
+import styles from './buttons.css';
 
 export function Button() {
   return (
-      <div>
-        <button><a href="#">EN</a>
+        <button className={styles.button}><a className={styles.__link} href="#">EN</a>
         </button>
-      </div>
   )
 }
